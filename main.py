@@ -7,7 +7,13 @@ def inicio():
     historial = []
     
     while True:
-        print("\n1. Agregar | 2. Ver | 3. Editar | 4. Eliminar | 5. Salir")
+        print("\n1. Agregar gasto")
+        print("2. Ver gastos")
+        print("3. Editar gasto")
+        print("4. Eliminar gasto")
+        print("5. Salir")
+
+        
         opcion = input("Opción: ")
         
         if opcion == "1":
