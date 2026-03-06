@@ -2,6 +2,7 @@ import interfaz
 from operaciones.agregar import agregar
 from operaciones.editar import editar
 from operaciones.eliminar import eliminar
+from operaciones.totales import calcular_total # Nueva importación
 
 def inicio():
     historial = []
@@ -11,15 +12,15 @@ def inicio():
         print("2. Ver gastos")
         print("3. Editar gasto")
         print("4. Eliminar gasto")
-        print("5. Salir")
+        print("5. Ver total acumulado") # Nueva opción
+        print("6. Salir")
 
-        
         opcion = input("Opción: ")
         
         if opcion == "1":
-            desc, monto = interfaz.pedir_datos()
+            desc, monto, cat = interfaz.pedir_datos()
             if desc is not None:
-                agregar(historial, desc, monto)
+                agregar(historial, desc, monto, cat)
         
         elif opcion == "2":
             interfaz.mostrar_lista(historial)
@@ -27,9 +28,9 @@ def inicio():
         elif opcion == "3":
             interfaz.mostrar_lista(historial)
             idx = interfaz.pedir_indice()
-            desc, monto = interfaz.pedir_datos()
+            desc, monto, cat = interfaz.pedir_datos()
             if desc is not None:
-                editar(historial, idx, desc, monto)
+                editar(historial, idx, desc, monto, cat)
         
         elif opcion == "4":
             interfaz.mostrar_lista(historial)
@@ -37,8 +38,11 @@ def inicio():
             eliminar(historial, idx)
             
         elif opcion == "5":
+            total = calcular_total(historial)
+            interfaz.mostrar_total(total)
+            
+        elif opcion == "6":
             print("Saliendo del sistema...")
             break
 
-# Llamada directa a la función
 inicio()
